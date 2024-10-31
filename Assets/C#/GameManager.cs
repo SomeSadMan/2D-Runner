@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
         distance += Time.deltaTime * 10f;
         highRecord = distance;
 
-        if (!Player.playerAlive)
+        if (!Player.PlayerAlive)
         {
             record.text = "Ваш рекорд: " + PlayerPrefs.GetFloat("Record").ToString("F0");
             scoreText.text = "Вы набрали: " + distance.ToString("F0");

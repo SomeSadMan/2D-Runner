@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 
 public class Player : MonoBehaviour
@@ -6,38 +7,64 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private BoxCollider2D coll;
     private Animator anim;
+    public static bool PlayerAlive;
+    private bool canDoubleJump;
+    private bool jump;
     private bool doubleJump;
+    private bool down;
     
     [SerializeField] private GameObject ChangeSpeedFor;
     [SerializeField] private float jumpForce;
     [SerializeField] private float fallSpeed;
     [SerializeField] private LayerMask jumpableGround;
 
-    public static bool playerAlive;
+    
 
-    private enum MovementState {PlayerRun, JumpUp, JumpDown, doublejump }
+    
+
+    private enum MovementState {PlayerRun, JumpUp, JumpDown, Doublejump }
     
     void Start()
     {
-        
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
-        doubleJump = false;
-        playerAlive = true;
-        
+        PlayerAlive = true;
+        canDoubleJump = false;
     }
     
     void Update()
     {
-
+        CheckMovementsInputs();
         ObservationForPlayer();
-        Jump();
         UpdateAnimState();
+    }
+
+    private void FixedUpdate()
+    {
+        Jump();
+        DoubleJump();
         Down();
     }
 
-   
+    private void CheckMovementsInputs()
+    {
+        if (IsGrounded() && Input.GetButtonDown("Jump"))
+        {
+            jump = true;
+        }
+
+        if (Input.GetButtonDown("Vertical"))
+        {
+            down = true;
+        }
+
+        if (!IsGrounded() && canDoubleJump && Input.GetButtonDown("Jump"))
+        {
+            doubleJump = true;
+        }
+    }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -51,20 +78,21 @@ public class Player : MonoBehaviour
     {
         anim.SetTrigger("death");
         rb.bodyType = RigidbodyType2D.Static;
-        playerAlive = false;
+        PlayerAlive = false;
 
     }
 
     private void Down()
     {
-        if (Input.GetButtonDown("Vertical"))
-        {
+        if (down)
+        { 
             rb.velocity = new Vector2(rb.velocity.x , -fallSpeed);
+            down = false;
         }
+       
     }
 
     private void UpdateAnimState()
-
     {
         MovementState state = 0;
         
@@ -81,44 +109,42 @@ public class Player : MonoBehaviour
 
         }
 
-        if (!IsGrounded() && doubleJump == false && rb.velocity.y > .1f)
+        if (!IsGrounded() && canDoubleJump == false && rb.velocity.y > .1f)
         {
-            state = MovementState.doublejump;
+            state = MovementState.Doublejump;
         }
-        else if (!IsGrounded() && doubleJump == false && rb.velocity.y < -.1f)
+        else if (!IsGrounded() && canDoubleJump == false && rb.velocity.y < -.1f)
         {
             state = MovementState.JumpDown;
         }
-
-            anim.SetInteger("state",(int)state);
+        
+        anim.SetInteger("state",(int)state);
 
     }
 
     private void Jump()
     {
-        if (IsGrounded())
+        if (jump)
         {
-            if (Input.GetButtonDown("Jump"))
-            {
-
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-                doubleJump = true;
-
-            }
-
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            jump = false;
+            canDoubleJump = true;
         }
-        else if (doubleJump && Input.GetButtonDown("Jump"))
-        {
+    }
 
-            rb.velocity = (new Vector2(rb.velocity.x, jumpForce));
+    void DoubleJump()
+    {
+        if (doubleJump)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             doubleJump = false;
-            Debug.Log("double jump");
+            canDoubleJump = false;
         }
     }
 
     private void ObservationForPlayer()
     {
-        if (playerAlive == false)
+        if (PlayerAlive == false)
         {
             Time.timeScale = 0f;
         }

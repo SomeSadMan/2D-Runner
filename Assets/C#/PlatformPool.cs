@@ -13,11 +13,6 @@ public class PlatformPool : MonoBehaviour
 
     [SerializeField] private int maxPoolSize = 15;
 
-    void Start()
-    {
-        
-    }
-
     
     void Update()
     {

@@ -9,7 +9,7 @@ public class PlatformController : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
 
 
-    void Update()
+    void FixedUpdate()
     {
        rb.velocity =  new Vector2 (-1 * speed, 0);
     }
