@@ -9,7 +9,8 @@ public class GameManager : MonoBehaviour
     public Text score;
     private float distance;
     private float highRecord;
-    private PlatformController platformSpeed;
+    private float checkPoint;
+    [SerializeField]private PlatformController platformSpeed;
     private NewSpawnerScriptFromDino spawnInterval;
     [SerializeField] private Text scoreText;
     [SerializeField] private Text record;
@@ -20,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        distance = 0;
+        
         Time.timeScale = 1;
 
     }
@@ -58,9 +59,12 @@ public class GameManager : MonoBehaviour
 
     private void ChangeSpeedLevel()
     {
-        if (distance == 100)
+        if (distance > checkPoint + 100 )
         {
-            // platformSpeed.speed += 1f;
+            //TODO: Сделать повышение скорости для всех поатформ , сейчас скорость повышается только для одной платформы
+            
+            checkPoint += 100;
+            platformSpeed.speed += 1f;
             // spawnInterval.spawnInterval -= 0.1f;
             Debug.Log("speed was increased");
         }
