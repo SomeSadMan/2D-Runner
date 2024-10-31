@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
 
     
 
-    private enum MovementState {PlayerRun, JumpUp, JumpDown, Doublejump }
+    private enum MovementState {PlayerRun, JumpUp, JumpDown, DoubleJump }
     
     void Start()
     {
@@ -111,7 +111,7 @@ public class Player : MonoBehaviour
 
         if (!IsGrounded() && canDoubleJump == false && rb.velocity.y > .1f)
         {
-            state = MovementState.Doublejump;
+            state = MovementState.DoubleJump;
         }
         else if (!IsGrounded() && canDoubleJump == false && rb.velocity.y < -.1f)
         {
