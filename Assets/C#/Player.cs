@@ -64,8 +64,7 @@ public class Player : MonoBehaviour
             doubleJump = true;
         }
     }
-
-
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
@@ -79,7 +78,6 @@ public class Player : MonoBehaviour
         anim.SetTrigger("death");
         rb.bodyType = RigidbodyType2D.Static;
         PlayerAlive = false;
-
     }
 
     private void Down()
@@ -89,7 +87,6 @@ public class Player : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x , -fallSpeed);
             down = false;
         }
-       
     }
 
     private void UpdateAnimState()
@@ -98,15 +95,11 @@ public class Player : MonoBehaviour
         
         if (rb.velocity.y > .1f)
         {
-
             state = MovementState.JumpUp;
-
         }
         else if (rb.velocity.y < -.1f)
         {
-
             state = MovementState.JumpDown;
-
         }
 
         if (!IsGrounded() && canDoubleJump == false && rb.velocity.y > .1f)
@@ -119,7 +112,6 @@ public class Player : MonoBehaviour
         }
         
         anim.SetInteger("state",(int)state);
-
     }
 
     private void Jump()
@@ -148,8 +140,6 @@ public class Player : MonoBehaviour
         {
             Time.timeScale = 0f;
         }
-        
-       
     }
 
     private bool IsGrounded()
