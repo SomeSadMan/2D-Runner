@@ -5,7 +5,7 @@ using UnityEngine;
 public class NewSpawnerScriptFromDino : MonoBehaviour
 {
     public List<GameObject> obstaclePrefabs;
-    public static float spawnInterval = 2f;
+    internal float spawnInterval = 2f;
     private GameObject lastSpawnedPrefab;
     [SerializeField] private float minSpawnRange; // Диапазон появления препятствий "От"
     [SerializeField] private float maxSwapnRange; // Диапазон появления препятствий "До"

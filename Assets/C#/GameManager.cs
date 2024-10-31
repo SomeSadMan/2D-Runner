@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     public Text score;
     private float distance;
     private float highRecord;
+    private PlatformController platformSpeed;
+    private NewSpawnerScriptFromDino spawnInterval;
     [SerializeField] private Text scoreText;
     [SerializeField] private Text record;
     [SerializeField] private GameObject loseScreen;
@@ -26,6 +28,7 @@ public class GameManager : MonoBehaviour
     
     void Update()
     {
+        ChangeSpeedLevel();
         score.text = distance.ToString("F0");
         distance += Time.deltaTime * 10f;
         highRecord = distance;
@@ -41,19 +44,13 @@ public class GameManager : MonoBehaviour
         {
             PlayerPrefs.SetFloat("Record", highRecord);
         }
-
-        ChangeSpeedLevel();
-        
-
-
     }
 
     public void PlayAgain()
     {
         SceneManager.LoadScene(1);
-        PlatformController.speed = 3f;
-        NewSpawnerScriptFromDino.spawnInterval = 2f;
-        
+        platformSpeed.speed = 3f;
+        spawnInterval.spawnInterval = 2f;
     }
 
    
@@ -61,51 +58,12 @@ public class GameManager : MonoBehaviour
 
     private void ChangeSpeedLevel()
     {
-        if (score.text == "100")
+        if (distance == 100)
         {
-            PlatformController.speed = 4f;
-            NewSpawnerScriptFromDino.spawnInterval = 1.9f;
-            
+            // platformSpeed.speed += 1f;
+            // spawnInterval.spawnInterval -= 0.1f;
+            Debug.Log("speed was increased");
         }
-        if (score.text == "200")
-        {
-            PlatformController.speed = 5f;
-            NewSpawnerScriptFromDino.spawnInterval = 1.8f;
-        }
-        if (score.text == "300")
-        {
-            PlatformController.speed = 5.5f;
-            NewSpawnerScriptFromDino.spawnInterval = 1.7f;
-        }
-
-        if (score.text == "400")
-        {
-            PlatformController.speed = 6f;
-            NewSpawnerScriptFromDino.spawnInterval = 1.6f;
-        }
-
-        if (score.text == "500")
-        {
-            PlatformController.speed = 7f;
-            NewSpawnerScriptFromDino.spawnInterval = 1.5f;
-        }
-
-        if (score.text == "600")
-        {
-            PlatformController.speed = 8f;
-            NewSpawnerScriptFromDino.spawnInterval = 1.4f;
-        }
-        if (score.text == "700")
-        {
-            PlatformController.speed = 9f;
-            NewSpawnerScriptFromDino.spawnInterval = 1.1f;
-        }
-        if (score.text == "800")
-        {
-            PlatformController.speed = 10f;
-            NewSpawnerScriptFromDino.spawnInterval = 0.8f;
-            
-        }
-
     }
+    
 }

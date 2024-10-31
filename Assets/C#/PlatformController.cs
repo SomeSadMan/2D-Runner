@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlatformController : MonoBehaviour
 {
-     public static float speed = 3f;
+    [SerializeField] internal float speed = 3f;
 
     [SerializeField] private Rigidbody2D rb;
 

@@ -18,9 +18,6 @@ public class Hint : MonoBehaviour
 
     private void HintDissapearing()
     {
-        if (PlatformController.speed == 4)
-        {
-            anim.SetBool("dis", true);
-        }
+        
     }
 }
