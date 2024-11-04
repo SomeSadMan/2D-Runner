@@ -214,6 +214,7 @@ MonoBehaviour:
   platforms:
   - {fileID: 731673038}
   - {fileID: 1577243602}
+  spawner: {fileID: 1979746454}
   scoreText: {fileID: 1776852214}
   record: {fileID: 1489859058}
   loseScreen: {fileID: 34342850}
