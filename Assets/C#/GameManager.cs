@@ -1,6 +1,7 @@
 ﻿
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using YG;
 
@@ -10,8 +11,8 @@ public class GameManager : MonoBehaviour
     private float distance;
     private float highRecord;
     private float checkPoint;
-    [SerializeField]private PlatformController[] platforms;
-    private NewSpawnerScriptFromDino spawnInterval;
+    [SerializeField] private PlatformController[] platforms;
+    [SerializeField] private NewSpawnerScriptFromDino spawner;
     [SerializeField] private Text scoreText;
     [SerializeField] private Text record;
     [SerializeField] private GameObject loseScreen;
@@ -54,8 +55,9 @@ public class GameManager : MonoBehaviour
         {
             checkPoint += 100;
             ChangePlatformSpeed();
-            // spawnInterval.spawnInterval -= 0.1f;
-            print("speed was increased");
+            spawner.spawnInterval -= 0.1f;
+            print($"current spawn lvl is {spawner.spawnInterval}");
+            
         }
     }
 
@@ -64,6 +66,7 @@ public class GameManager : MonoBehaviour
         foreach (var platform in platforms)
         {
             platform.speed += 1f;
+            print($"current speed lvl is {platform.speed}");
         }
     }
 }

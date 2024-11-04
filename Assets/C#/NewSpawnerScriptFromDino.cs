@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewSpawnerScriptFromDino : MonoBehaviour
+public class NewSpawnerScriptFromDino : MonoBehaviour 
+//TODO - придумать или понять , как я хочу чтобы работал новый спавнер, так как сейчас я проболем не вижу и идей тоже никаких нет
 {
     public List<GameObject> obstaclePrefabs;
     internal float spawnInterval = 2f;
