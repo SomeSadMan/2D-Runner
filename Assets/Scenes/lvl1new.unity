@@ -357,7 +357,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.015709016, y: 0.10079681}
   m_AnchorMax: {x: 0.9593044, y: 0.9045748}
-  m_AnchoredPosition: {x: -44.956787, y: -8.98584}
+  m_AnchoredPosition: {x: -44.956543, y: -8.98584}
   m_SizeDelta: {x: -194.0754, y: -233.29}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &470404901
@@ -1334,7 +1334,7 @@ GameObject:
   - component: {fileID: 1624622406}
   - component: {fileID: 1624622405}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: BackGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1884,8 +1884,8 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 525286177}
-  - {fileID: 1081082520}
   - {fileID: 1375054522}
+  - {fileID: 1081082520}
   - {fileID: 768311310}
   - {fileID: 2085160346}
   - {fileID: 1903385604}

@@ -7,13 +7,12 @@ public class NewSpawnerScriptFromDino : MonoBehaviour
     public List<GameObject> obstaclePrefabs;
     internal float spawnInterval = 2f;
     private GameObject lastSpawnedPrefab;
-    [SerializeField] private float minSpawnRange; // Диапазон появления препятствий "От"
-    [SerializeField] private float maxSwapnRange; // Диапазон появления препятствий "До"
+    [SerializeField] private float minSpawnRange;
+    [SerializeField] private float maxSwapnRange;
 
 
     private void Start()
     {
-        // Запускаем спаун препятствий через указанный интервал
         StartCoroutine(SpawnObstacles());
     }
 
@@ -22,14 +21,9 @@ public class NewSpawnerScriptFromDino : MonoBehaviour
         while (true)
         {
             GameObject obstaclePrefab = GetRandomPrefabExpectLast();
-            // Генерируем случайную позицию по оси Y для спауна препятствия
             float spawnX = Random.Range(minSpawnRange, maxSwapnRange);
-            //int prefRand = Random.Range(0, obstaclePrefab.Length);
-            // Создаем новый экземпляр препятствия в позиции, сгенерированной выше
             GameObject pfer = Instantiate(obstaclePrefab, new Vector3(spawnX, transform.position.y, 0), Quaternion.identity);
             Destroy(pfer, 5f);
-
-            // Ждем указанный интервал перед следующим спауном
             yield return new WaitForSeconds(spawnInterval);
         }
     }
