@@ -211,6 +211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: {fileID: 736566718}
+  hint: {fileID: 1167544507}
   platforms:
   - {fileID: 731673038}
   - {fileID: 1577243602}
@@ -937,7 +938,7 @@ GameObject:
   - component: {fileID: 1167544510}
   m_Layer: 5
   m_Name: Hint
-  m_TagString: Untagged
+  m_TagString: tip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -973,7 +974,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 079ff7d270acb6b47bbfbba8a89019bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!114 &1167544508
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,12 +11,14 @@ public class GameManager : MonoBehaviour
     private float distance;
     private float highRecord;
     private float checkPoint;
+    private bool isTipHidden;
     [SerializeField] private PlatformController[] platforms;
     [SerializeField] private NewSpawnerScriptFromDino spawner;
     [SerializeField] private Text scoreText;
     [SerializeField] private Text record;
     [SerializeField] private GameObject loseScreen;
-    
+    private static readonly int Dis = Animator.StringToHash("dis");
+
     void Start()
     {
         Time.timeScale = 1;
@@ -24,6 +26,7 @@ public class GameManager : MonoBehaviour
     
     void Update()
     {
+        HintDissappearance(out var tip);
         ChangeSpeedLevel();
         score.text = distance.ToString("F0");
         distance += Time.deltaTime * 10f;
@@ -55,7 +58,7 @@ public class GameManager : MonoBehaviour
             ChangePlatformSpeed();
             spawner.spawnInterval -= 0.1f;
             print($"current spawn lvl is {spawner.spawnInterval}");
-            
+
         }
     }
 
@@ -65,6 +68,22 @@ public class GameManager : MonoBehaviour
         {
             platform.speed += 1f;
             print($"current speed lvl is {platform.speed}");
+        }
+    }
+
+    
+    private void HintDissappearance(out GameObject hint)
+    {
+        hint = GameObject.FindGameObjectWithTag("tip");
+        if (hint)
+        {
+            Animator anim = hint.GetComponent<Animator>();
+            
+            if (!isTipHidden && Time.time > 10f)
+            {
+                anim.SetBool("dis", true);
+                isTipHidden = true;
+            }
         }
     }
 }
