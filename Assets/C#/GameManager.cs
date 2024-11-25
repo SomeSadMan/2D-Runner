@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text scoreText;
     [SerializeField] private Text record;
     [SerializeField] private GameObject loseScreen;
-    private static readonly int Dis = Animator.StringToHash("dis");
+    
 
     void Start()
     {
