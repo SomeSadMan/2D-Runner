@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewSpawnerScriptFromDino : MonoBehaviour 
+public class Spawner : MonoBehaviour 
 //TODO - придумать или понять , как я хочу чтобы работал новый спавнер, так как сейчас я проболем не вижу и идей тоже никаких нет
 {
     public List<GameObject> obstaclePrefabs;
@@ -23,8 +23,8 @@ public class NewSpawnerScriptFromDino : MonoBehaviour
         {
             GameObject obstaclePrefab = GetRandomPrefabExpectLast();
             float spawnX = Random.Range(minSpawnRange, maxSwapnRange);
-            GameObject pfer = Instantiate(obstaclePrefab, new Vector3(spawnX, transform.position.y, 0), Quaternion.identity);
-            Destroy(pfer, 5f);
+            GameObject pref = Instantiate(obstaclePrefab, new Vector3(spawnX, transform.position.y, 0), Quaternion.identity);
+            Destroy(pref, 5f);
             yield return new WaitForSeconds(spawnInterval);
         }
     }

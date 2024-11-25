@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     private float checkPoint;
     private bool isTipHidden;
     [SerializeField] private PlatformController[] platforms;
-    [SerializeField] private NewSpawnerScriptFromDino spawner;
+    [SerializeField] private Spawner spawner;
     [SerializeField] private Text scoreText;
     [SerializeField] private Text record;
     [SerializeField] private GameObject loseScreen;
