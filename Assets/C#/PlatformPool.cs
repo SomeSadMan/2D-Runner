@@ -5,7 +5,7 @@ public class PlatformPool : MonoBehaviour
 {
     [SerializeField] private GameObject platformPrefab;
 
-    [SerializeField] private float currentXSpawnposition = 12f;
+    [SerializeField] private float currentXSpawnposition;
 
     public IObjectPool<GameObject> m_pool { get; set; }
 
