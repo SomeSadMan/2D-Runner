@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private CharacterHealth characterHealth;
     private Rigidbody2D rb;
     private BoxCollider2D coll;
     private Animator anim;
@@ -81,11 +82,15 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Die();
+            characterHealth.HpValue -= characterHealth.takenDamage;
+            characterHealth.HideHeartFromBar();
+            Debug.Log($"hp deducted, your current hp is {characterHealth.HpValue}");
+            Destroy(collision.gameObject);
+            
         }
     }
 
-    private void Die()
+    internal void Die()
     {
         anim.SetTrigger("death");
         rb.bodyType = RigidbodyType2D.Static;

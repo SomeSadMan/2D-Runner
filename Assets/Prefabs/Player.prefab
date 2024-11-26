@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1527173445488249757}
   - component: {fileID: 552943356530725133}
   - component: {fileID: 262350778783010094}
+  - component: {fileID: 1233082368140746033}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -121,12 +122,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eda781e04177ff548a4ac8f4280f83f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChangeSpeedFor: {fileID: 8434659231738819053, guid: 8c4f029cc6fd7c441a23d232bba61ec9, type: 3}
-  jumpForce: 7
   fallSpeed: 20
   jumpableGround:
     serializedVersion: 2
     m_Bits: 8
+  jumpForce: 7
 --- !u!50 &552943356530725133
 Rigidbody2D:
   serializedVersion: 4
@@ -199,3 +199,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.14418855, y: 0.20798603}
   m_EdgeRadius: 0
+--- !u!114 &1233082368140746033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312048146351395723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18fc020eaca04b74b83835d7f615b1c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
