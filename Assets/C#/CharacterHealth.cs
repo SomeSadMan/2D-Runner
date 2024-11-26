@@ -10,6 +10,7 @@ public class CharacterHealth : MonoBehaviour
     private int hpValue = 3;
     internal readonly int takenDamage = 1;
     private int currentHeartIndex;
+    private int currentHeartIndex2;
 
     public int HpValue
     {
@@ -32,6 +33,19 @@ public class CharacterHealth : MonoBehaviour
             hpImage[i].SetActive(false);
             currentHeartIndex = i + 1;
             break;
+        }
+    }
+    public void AddHeartInBar()
+    {
+        for (int i = hpImage.Length - 1; i >= 0;)
+        {
+            if (!hpImage[i].activeSelf)
+            {
+                hpImage[i].SetActive(true);
+                currentHeartIndex2 = i + 1;
+                break;
+            }
+            
         }
     }
     
