@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 
@@ -13,15 +14,26 @@ public class Player : MonoBehaviour
     private bool doubleJump;
     private bool down;
     
-    [SerializeField] private GameObject ChangeSpeedFor;
-    [SerializeField] private float jumpForce;
     [SerializeField] private float fallSpeed;
     [SerializeField] private LayerMask jumpableGround;
+    [SerializeField] private float jumpForce;
+    internal bool IsSpeedIncreased;
 
+    public float JumpForce
+    {
+        get => jumpForce;
+        set
+        {
+            jumpForce = value;
+            if (IsSpeedIncreased)
+            {
+                StartCoroutine(ResetAfterDelay(5));
+                
+            }
+        }
+        
+    }
     
-
-    
-
     private enum MovementState {PlayerRun, JumpUp, JumpDown, DoubleJump }
     
     void Start()
@@ -118,7 +130,7 @@ public class Player : MonoBehaviour
     {
         if (jump)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            rb.velocity = new Vector2(rb.velocity.x, JumpForce);
             jump = false;
             canDoubleJump = true;
         }
@@ -128,7 +140,7 @@ public class Player : MonoBehaviour
     {
         if (doubleJump)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            rb.velocity = new Vector2(rb.velocity.x, JumpForce);
             doubleJump = false;
             canDoubleJump = false;
         }
@@ -141,6 +153,13 @@ public class Player : MonoBehaviour
             Time.timeScale = 0f;
         }
     }
+    
+    private IEnumerator ResetAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        IsSpeedIncreased = false;
+        JumpForce = 7;
+    }
 
     private bool IsGrounded()
     {
@@ -151,12 +170,12 @@ public class Player : MonoBehaviour
     {
         if (IsGrounded())
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            rb.velocity = new Vector2(rb.velocity.x, JumpForce);
             doubleJump = true;
         }
         else if (doubleJump)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            rb.velocity = new Vector2(rb.velocity.x, JumpForce);
             doubleJump = false;
         }
     }
@@ -164,4 +183,6 @@ public class Player : MonoBehaviour
     {
         rb.velocity = new Vector2(rb.velocity.x, -fallSpeed);
     }
+    
+    
 }
