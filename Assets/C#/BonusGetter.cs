@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BonusGetter : MonoBehaviour
 {
-   private readonly float bonusValue = 10f;
+   private readonly float bonusValue = 3f;
    [SerializeField] private Player player;
 
    private void OnTriggerEnter2D(Collider2D collider2D)
