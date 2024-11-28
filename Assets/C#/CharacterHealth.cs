@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CharacterHealth : MonoBehaviour
@@ -17,13 +18,14 @@ public class CharacterHealth : MonoBehaviour
         get => hpValue;
         set
         {
-            if (value <= 0 )
+            if (value <= 0)
             {
                 character = FindObjectOfType<Player>();
                 character.Die();
             }
+
             hpValue = value;
-        } 
+        }
     }
 
     public void HideHeartFromBar()
@@ -35,18 +37,17 @@ public class CharacterHealth : MonoBehaviour
             break;
         }
     }
+
     public void AddHeartInBar()
     {
-        for (int i = hpImage.Length - 1; i >= 0;)
+        for (int i = hpImage.Length - 1; i >= 0; i--)
         {
-            if (!hpImage[i].activeSelf)
+            if (!hpImage[i].activeSelf) 
             {
-                hpImage[i].SetActive(true);
-                currentHeartIndex2 = i + 1;
+                hpImage[i].SetActive(true); 
                 break;
             }
-            
         }
+
     }
-    
 }
