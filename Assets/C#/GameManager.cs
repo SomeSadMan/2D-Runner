@@ -27,11 +27,17 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         HintDissappearance(out var tip);
+        HighScoreObservation();
         ChangeSpeedLevel();
         score.text = distance.ToString("F0");
         distance += Time.deltaTime * 10f;
         highRecord = distance;
 
+        
+    }
+
+    private void HighScoreObservation()
+    {
         if (!Player.PlayerAlive)
         {
             record.text = "Ваш рекорд: " + PlayerPrefs.GetFloat("Record").ToString("F0");
