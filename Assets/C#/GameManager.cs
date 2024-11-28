@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     private float highRecord;
     private float checkPoint;
     private bool isTipHidden;
+    public int Coins { get; set; }
+
     [SerializeField] private PlatformController[] platforms;
     [SerializeField] private Spawner spawner;
     [SerializeField] private Text scoreText;
