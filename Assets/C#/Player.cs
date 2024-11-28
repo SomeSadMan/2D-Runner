@@ -84,6 +84,7 @@ public class Player : MonoBehaviour
         {
             characterHealth.HpValue -= characterHealth.takenDamage;
             characterHealth.HideHeartFromBar();
+            //TODO:сделать анимацию получения урона (мигание спрайта или визуальный эффект) 
             Debug.Log($"hp deducted, your current hp is {characterHealth.HpValue}");
             Destroy(collision.gameObject);
             
