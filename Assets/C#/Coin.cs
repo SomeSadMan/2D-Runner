@@ -9,13 +9,13 @@ public class Coin : MonoBehaviour
 {
     private GameManager gameManager;
     private readonly int coinValue = 1;
-    private Transform platform;
+    [SerializeField] private Transform platform;
     private float startCoinPositionX;
 
 
     private void Start()
     {
-        platform = FindNearestPlatform();
+        
         if (platform != null)
         {
             startCoinPositionX = transform.position.x - platform.position.x;
@@ -24,6 +24,7 @@ public class Coin : MonoBehaviour
 
     private void Update()
     {
+        
         if (platform != null)
         {
             transform.position = new Vector3(platform.position.x + startCoinPositionX, transform.position.y,
@@ -41,24 +42,7 @@ public class Coin : MonoBehaviour
         }
     }
 
-    private Transform FindNearestPlatform()
-    {
-        GameObject[] platforms = GameObject.FindGameObjectsWithTag("Platform");
-        Transform nearest = null;
-        float minDistance = Mathf.Infinity;
-
-        foreach (var obj in platforms)
-        {
-            float distance = Vector3.Distance(transform.position, obj.transform.position);
-            if (distance < minDistance)
-            {
-                minDistance = distance;
-                nearest = obj.transform;
-            }
-        }
-
-        return nearest;
-    }
+    
 }
 
 
