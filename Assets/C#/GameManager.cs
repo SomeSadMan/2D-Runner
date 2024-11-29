@@ -64,8 +64,8 @@ public class GameManager : MonoBehaviour
         {
             checkPoint += 100;
             ChangePlatformSpeed();
-            spawner.spawnInterval -= 0.1f;
-            print($"current spawn lvl is {spawner.spawnInterval}");
+            spawner.obstacleSpawnDelay -= 0.1f;
+            print($"current spawn lvl is {spawner.obstacleSpawnDelay}");
 
         }
     }
