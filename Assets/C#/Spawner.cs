@@ -10,6 +10,14 @@ public class Spawner : MonoBehaviour
     private GameObject lastSpawnedPrefab;
     [SerializeField] private float minSpawnRange;
     [SerializeField] private float maxSwapnRange;
+    
+    [Header("Coin Spawner")]
+    [SerializeField] private GameObject coinPrefab;
+    private float positionX;
+    private float randomPositionY;
+    private Vector2 spawnPosition;
+    private float spawnDelay = 6f;
+    private float nextSpawnTime = 0f;
 
 
     private void Start()
@@ -51,5 +59,21 @@ public class Spawner : MonoBehaviour
         }
         lastSpawnedPrefab = newPrefab;
         return newPrefab;
+     }
+     
+     private void CoinSpawn()
+     {
+         if (Time.time > nextSpawnTime)
+         {
+             nextSpawnTime = Time.time + spawnDelay;
+             // positionX = //TODO должна быть равна какой либо позиции платформы 
+             positionX = Random.Range( 4, 5);
+             randomPositionY = Random.Range(-4, 0);
+             spawnPosition = new Vector2(positionX, randomPositionY);
+             GameObject coin = Instantiate(coinPrefab, spawnPosition, Quaternion.identity);
+             Destroy(coin, 5f);
+         }
+       
+
      }
 }
