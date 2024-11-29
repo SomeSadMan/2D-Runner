@@ -69,6 +69,7 @@ public class Spawner : MonoBehaviour
         return newPrefab;
      }
      
+     //TODO можно попробовать вынести метод в такую же корутину, чтобы спавн работал не через апдейт , а по примеру метода выше 
      private void CoinSpawn()
      {
          if (Time.time > nextSpawnTime)
@@ -78,9 +79,10 @@ public class Spawner : MonoBehaviour
              // positionX = //TODO должна быть равна какой либо позиции платформы 
              positionX = Random.Range( 3, 5);
              
-             randomPositionY = Random.Range(-4, 0);
+             randomPositionY = Random.Range(-4, -1);
              spawnPosition = new Vector2(positionX, randomPositionY);
              GameObject coin = Instantiate(coinPrefab, spawnPosition, Quaternion.identity);
+             //TODO можно сделать проверку , если коин будет равен null , то удалять не требуется 
              Destroy(coin, 5f);
          }
        

@@ -9,16 +9,19 @@ public class Coin : MonoBehaviour
 {
     private GameManager gameManager;
     private readonly int coinValue = 1;
+    private Rigidbody2D _rigidbody2D;
     
     
 
 
     private void Start()
     {
+        _rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
+        _rigidbody2D.velocity = Vector2.left * 3;
     }
 
     private void OnTriggerEnter2D(Collider2D coll)
