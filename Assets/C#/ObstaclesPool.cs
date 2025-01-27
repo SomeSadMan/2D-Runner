@@ -7,40 +7,51 @@ public class ObstaclesPool : MonoBehaviour
 {
     [SerializeField] private int poolSize;
     [SerializeField] private GameObject[] prefabs;
-    private Queue<GameObject> obstaclePool = new Queue<GameObject>();
+    private List<GameObject> obstaclePool = new List<GameObject>();
     private int randomObstacle;
+    private int randomIndex;
 
     private void Start()
     {
         for (int i = 0; i < poolSize; i++)
         {
-            GameObject obstacle = Instantiate(prefabs[i]);
-            obstaclePool.Enqueue(obstacle);
+            
+            GameObject obstacle = Instantiate(prefabs[i % prefabs.Length]);
             obstacle.SetActive(false);
+            obstaclePool.Add(obstacle);
         }
     }
     
 
     public GameObject GetObstacle()
     {
-        randomObstacle = Random.Range(0, prefabs.Length);
-        GameObject obstacle;
-        if (obstaclePool.Count > 0)
+        List<GameObject> inactives = new List<GameObject>();
+
+        foreach (var obstacle in obstaclePool)
         {
-            obstacle = obstaclePool.Dequeue();
-            obstacle.SetActive(true);
-        }
-        else
-        {
-            obstacle = Instantiate(prefabs[randomObstacle]);
+            if (!obstacle.activeInHierarchy)
+            {
+                inactives.Add(obstacle);
+                
+            }
         }
 
-        return obstacle;
+        if (inactives.Count > 0)
+        {
+            int _randomIndex = Random.Range(0, inactives.Count);
+            GameObject randObstacle = inactives[_randomIndex];
+            randObstacle.SetActive(true);
+            return randObstacle;
+        }
+        
+        int randomIndexPref = Random.Range(0, prefabs.Length);
+        GameObject newObstacle = Instantiate(prefabs[randomIndexPref]);
+        obstaclePool.Add(newObstacle);
+        return newObstacle;
     }
 
     public void ReturnObstacle(GameObject obstacle)
     {
         obstacle.SetActive(false);
-        obstaclePool.Enqueue(obstacle);
     }
 }
