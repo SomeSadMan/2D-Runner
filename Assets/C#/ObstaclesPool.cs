@@ -8,7 +8,7 @@ public class ObstaclesPool : MonoBehaviour
     [SerializeField] private int poolSize;
     [SerializeField] private GameObject[] prefabs;
     private Queue<GameObject> obstaclePool = new Queue<GameObject>();
-    private int _randomObstacle;
+    private int randomObstacle;
 
     private void Start()
     {
@@ -19,18 +19,11 @@ public class ObstaclesPool : MonoBehaviour
             obstacle.SetActive(false);
         }
     }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            GetObstacle();
-        }
-    }
+    
 
     public GameObject GetObstacle()
     {
-        _randomObstacle = Random.Range(0, prefabs.Length);
+        randomObstacle = Random.Range(0, prefabs.Length);
         GameObject obstacle;
         if (obstaclePool.Count > 0)
         {
@@ -39,7 +32,7 @@ public class ObstaclesPool : MonoBehaviour
         }
         else
         {
-            obstacle = Instantiate(prefabs[_randomObstacle]);
+            obstacle = Instantiate(prefabs[randomObstacle]);
         }
 
         return obstacle;
