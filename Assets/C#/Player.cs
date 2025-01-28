@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float fallSpeed;
     [SerializeField] private LayerMask jumpableGround;
     [SerializeField] private float jumpForce;
+    [SerializeField] private ObstaclesPool pool;
     internal bool IsSpeedIncreased;
 
     public float JumpForce
@@ -86,7 +87,8 @@ public class Player : MonoBehaviour
             characterHealth.HideHeartFromBar();
             //TODO:сделать анимацию получения урона (мигание спрайта или визуальный эффект) 
             Debug.Log($"hp deducted, your current hp is {characterHealth.HpValue}");
-            Destroy(collision.gameObject);
+            pool.ReturnObstacle(collision.gameObject);
+            
             
         }
     }

@@ -812,6 +812,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1698067240}
     - target: {fileID: 1527173445488249757, guid: e4e949a5940a58b48ad0a0bf8b94a330, type: 3}
+      propertyPath: pool
+      value: 
+      objectReference: {fileID: 2079591373}
+    - target: {fileID: 1527173445488249757, guid: e4e949a5940a58b48ad0a0bf8b94a330, type: 3}
       propertyPath: characterHealth
       value: 
       objectReference: {fileID: 1583151877}
