@@ -70,8 +70,15 @@ public class GameManager : MonoBehaviour
     {
         foreach (var platform in platforms)
         {
-            platform.speed += 1f;
-            print($"current speed lvl is {platform.speed}");
+            if (platform.speed < platform.msxSpeed)
+            {
+                platform.speed += 1f;
+                print($"current speed lvl is {platform.speed}");
+            }
+            else
+            {
+                print("Maximum speed reached!");
+            }
         }
     }
 
