@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
 
     private void HighScoreObservation()
     {
-        if (!Player.PlayerAlive)
+        if (!PlayerOld.PlayerAlive)
         {
             record.text = "Ваш рекорд: " + PlayerPrefs.GetFloat("Record").ToString("F0");
             scoreText.text = "Вы набрали: " + distance.ToString("F0");

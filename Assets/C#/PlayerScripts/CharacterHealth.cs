@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class CharacterHealth : MonoBehaviour
 {
-    private Player character;
+    private PlayerOld character;
     [SerializeField] private GameObject[] hpImage;
     private int hpValue = 3;
     internal readonly int takenDamage = 1;
@@ -20,7 +20,7 @@ public class CharacterHealth : MonoBehaviour
         {
             if (value <= 0)
             {
-                character = FindObjectOfType<Player>();
+                character = FindObjectOfType<PlayerOld>();
                 character.Die();
             }
 

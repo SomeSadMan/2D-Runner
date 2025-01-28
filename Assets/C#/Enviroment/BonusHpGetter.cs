@@ -9,7 +9,7 @@ public class BonusHpGetter : MonoBehaviour
    
    private void OnCollisionEnter2D(Collision2D coll)
    {
-      if (coll.gameObject.CompareTag("Player"))
+      if (coll.gameObject.CompareTag("PlayerOld"))
       {
          characterHp = FindObjectOfType<CharacterHealth>();
          characterHp.AddHeartInBar();

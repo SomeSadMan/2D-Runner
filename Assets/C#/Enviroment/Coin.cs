@@ -27,7 +27,7 @@ public class Coin : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D coll)
     {
-        if (coll.CompareTag("Player"))
+        if (coll.CompareTag("PlayerOld"))
         {
             gameManager = FindObjectOfType<GameManager>();
             gameManager.Coins += coinValue;
