@@ -19,6 +19,14 @@ public class Coinspool : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            GetCoin();
+        }
+    }
+
     public GameObject GetCoin()
     {
         if (coinPool.Count > 0)
