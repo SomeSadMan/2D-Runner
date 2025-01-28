@@ -1,10 +1,11 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class MusicController : MonoBehaviour
 {
-    [SerializeField] private  AudioSource _mainMusic;
-    [SerializeField] private GameObject _musicOn;
-    [SerializeField] private GameObject _musicOff;
+    [SerializeField] private  AudioSource mainMusic;
+    [SerializeField] private GameObject musicOn;
+    [SerializeField] private GameObject musicOff;
 
     private static MusicController _instance;
     private bool _isPlaying;
@@ -17,9 +18,7 @@ public class MusicController : MonoBehaviour
 
     private void Awake()
     {
-
-        
-        _mainMusic.Play();
+        mainMusic.Play();
         if ( _instance != null )
         {
             Destroy(gameObject);
@@ -38,40 +37,31 @@ public class MusicController : MonoBehaviour
 
     public void MusicOff()
     {
-        _mainMusic.Pause();
-        _musicOn.SetActive(true);
-        _musicOff.SetActive(false);
+        mainMusic.Pause();
+        musicOn.SetActive(true);
+        musicOff.SetActive(false);
         _isPlaying = false;
-       
-
     }
 
     public void MusicOn()
     {
-        _mainMusic.Play();
-        _musicOn.SetActive(false);
-        _musicOff.SetActive(true);
+        mainMusic.Play();
+        musicOn.SetActive(false);
+        musicOff.SetActive(true);
         _isPlaying = true;
-        
-
     }
     
     private void CheckMusic()
     {
        if( _isPlaying && Time.timeScale == 0 )
        {
-            _mainMusic.volume = 0;
+            mainMusic.volume = 0;
             _isPlaying = false;
-            
-           
        }
-        else if( !_isPlaying && Time.timeScale == 1 )
-        {
-            _mainMusic.volume = 0.5f;
+       else if( !_isPlaying && Time.timeScale == 1 )
+       {
+            mainMusic.volume = 0.5f;
             _isPlaying = true;
-        }
-        
-
-
+       }
     }
 }
