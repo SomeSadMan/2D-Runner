@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour
     public int Coins { get; set; }
 
     [SerializeField] private PlatformController[] platforms;
-    [SerializeField] private Spawner spawner;
     [SerializeField] private Text scoreText;
     [SerializeField] private Text record;
     [SerializeField] private GameObject loseScreen;
@@ -64,9 +63,6 @@ public class GameManager : MonoBehaviour
         {
             checkPoint += 100;
             ChangePlatformSpeed();
-            spawner.obstacleSpawnDelay -= 0.1f;
-            print($"current spawn lvl is {spawner.obstacleSpawnDelay}");
-
         }
     }
 
