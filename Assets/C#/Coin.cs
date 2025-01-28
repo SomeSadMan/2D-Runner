@@ -10,8 +10,9 @@ public class Coin : MonoBehaviour
     private GameManager gameManager;
     private readonly int coinValue = 1;
     private Rigidbody2D _rigidbody2D;
-    
-    
+    public Coinspool CoinsPool { get; set; }
+
+
 
 
     private void Start()
@@ -30,7 +31,9 @@ public class Coin : MonoBehaviour
         {
             gameManager = FindObjectOfType<GameManager>();
             gameManager.Coins += coinValue;
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            Debug.Log("Монетка собрана, возвращаем в пул.");
+            CoinsPool.ReturnCoin(gameObject);
         }
     }
 

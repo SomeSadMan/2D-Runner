@@ -29,15 +29,26 @@ public class Coinspool : MonoBehaviour
 
     public GameObject GetCoin()
     {
+        GameObject coin;
         if (coinPool.Count > 0)
         {
-            GameObject coin = coinPool.Dequeue();
-            coin.SetActive(true);
-            return coin;
+            coin = coinPool.Dequeue();
         }
-
-        GameObject newCoin = Instantiate(prefab, transform);
-        return newCoin;
+        else
+        {
+            coin = Instantiate(prefab, transform);
+            
+        }
+        
+        coin.SetActive(true);
+        Coin coinScr = coin.GetComponent<Coin>();
+        if (coinScr != null)
+        {
+            coinScr.CoinsPool = this;
+            Debug.Log("Ссылка на Coinspool установлена для монетки.");
+        }
+        
+        return coin;
     }
 
     public void ReturnCoin(GameObject coin)

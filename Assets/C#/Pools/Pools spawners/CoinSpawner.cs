@@ -6,14 +6,19 @@ using UnityEngine.Serialization;
 public class CoinSpawner : MonoBehaviour
 {
     [SerializeField] private Coinspool coinPool;
-    [SerializeField] private Transform coinPosition;
+    [SerializeField] private Transform[] coinPosition;
     [SerializeField] private float delay;
+    private int randomPosition;
 
     private IEnumerator SpawnCoinsAfterTime(float time)
     {
-        GameObject coin = coinPool.GetCoin();
-        coin.transform.position = coinPosition.position;
-        yield return new WaitForSeconds(time);
+        while (true)
+        {
+            randomPosition = Random.Range(0, coinPosition.Length);
+            GameObject coin = coinPool.GetCoin();
+            coin.transform.position = coinPosition[randomPosition].position;
+            yield return new WaitForSeconds(time);
+        }
     }
     void Start()
     {
