@@ -13,9 +13,28 @@ public class Coinspool : MonoBehaviour
     {
         for (int i = 0; i < poolSize; i++)
         {
-            GameObject coin = Instantiate(prefab);
+            GameObject coin = Instantiate(prefab, transform);
             coinPool.Enqueue(coin);
             coin.SetActive(false);
         }
+    }
+
+    public GameObject GetCoin()
+    {
+        if (coinPool.Count > 0)
+        {
+            GameObject coin = coinPool.Dequeue();
+            coin.SetActive(true);
+            return coin;
+        }
+
+        GameObject newCoin = Instantiate(prefab, transform);
+        return newCoin;
+    }
+
+    public void ReturnCoin(GameObject coin)
+    {
+        coinPool.Enqueue(coin);
+        coin.SetActive(false);
     }
 }
