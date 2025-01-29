@@ -14,7 +14,8 @@ public class BootStrap : MonoBehaviour
     {
         IMovement movement = new PlayerMovement(_player.Rb, _player.JumpVelocity, _player.FallVelocity);
         IState state = new PlayerState(_player.Rb, _player.Anim);
-        _player.Construct(movement, state);
+        IHealth health = new CharacterHealth(3);
+        _player.Construct(movement, state, health); 
     }
 
     

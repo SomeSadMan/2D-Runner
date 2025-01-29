@@ -92,10 +92,10 @@ public class PlayerOld : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            characterHealth.HpValue -= characterHealth.takenDamage;
+            //characterHealth.HpValue -= characterHealth.takenDamage;
             characterHealth.HideHeartFromBar();
             //TODO:сделать анимацию получения урона (мигание спрайта или визуальный эффект) 
-            Debug.Log($"hp deducted, your current hp is {characterHealth.HpValue}");
+            //Debug.Log($"hp deducted, your current hp is {characterHealth.HpValue}");
             pool.ReturnObstacle(collision.gameObject);
             
             

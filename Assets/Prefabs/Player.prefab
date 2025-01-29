@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 262932881523574202}
   - component: {fileID: 3098106324672476630}
   - component: {fileID: 2083590654904694491}
-  - component: {fileID: 1527173445488249757}
   - component: {fileID: 552943356530725133}
   - component: {fileID: 262350778783010094}
-  - component: {fileID: 1233082368140746033}
+  - component: {fileID: 9100570547836907156}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -110,24 +109,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1527173445488249757
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 312048146351395723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eda781e04177ff548a4ac8f4280f83f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterHealth: {fileID: 1233082368140746033}
-  fallSpeed: 20
-  jumpableGround:
-    serializedVersion: 2
-    m_Bits: 8
-  jumpForce: 7
 --- !u!50 &552943356530725133
 Rigidbody2D:
   serializedVersion: 4
@@ -200,7 +181,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.14418855, y: 0.20798603}
   m_EdgeRadius: 0
---- !u!114 &1233082368140746033
+--- !u!114 &9100570547836907156
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -209,10 +190,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 312048146351395723}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18fc020eaca04b74b83835d7f615b1c2, type: 3}
+  m_Script: {fileID: 11500000, guid: 37c9f1769ce61974d95c70271fb5944c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpImage:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  jumpVelocity: 7
+  fallVelocity: 20
+  jumpableGround:
+    serializedVersion: 2
+    m_Bits: 8

@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 {
     private IMovement _imovement;
     private IState _state;
+    private IHealth _health;
 
     public Rigidbody2D Rb { get; private set; }
     public Animator Anim { get; private set; }
@@ -24,10 +25,11 @@ public class Player : MonoBehaviour
     private bool down;
     public bool CanDoubleJump { get; private set; }
 
-    public void Construct(IMovement movement, IState state)
+    public void Construct(IMovement movement, IState state, IHealth health)
     {
         _imovement = movement;
         _state = state;
+        _health = health;
     }
 
     private void Awake()
@@ -93,5 +95,19 @@ public class Player : MonoBehaviour
     public bool IsGrounded()
     {
         return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, jumpableGround);
+    }
+    
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            //characterHealth.HpValue -= characterHealth.takenDamage;
+            _health.HideHeartFromBar();
+            //TODO:сделать анимацию получения урона (мигание спрайта или визуальный эффект) 
+            //Debug.Log($"hp deducted, your current hp is {characterHealth.HpValue}");
+            // pool.ReturnObstacle(collision.gameObject);
+            
+            
+        }
     }
 }

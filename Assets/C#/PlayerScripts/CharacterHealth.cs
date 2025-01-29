@@ -4,26 +4,29 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class CharacterHealth : MonoBehaviour
+public class CharacterHealth :IHealth
 {
-    private PlayerOld character;
     [SerializeField] private GameObject[] hpImage;
     private int hpValue = 3;
     internal readonly int takenDamage = 1;
     private int currentHeartIndex;
     private int currentHeartIndex2;
 
-    public int HpValue
+    public CharacterHealth(int hpValue)
+    {
+        _hpValue = hpValue;
+    }
+
+    public int _hpValue
     {
         get => hpValue;
         set
         {
             if (value <= 0)
             {
-                character = FindObjectOfType<PlayerOld>();
-                character.Die();
+                
             }
-
+            
             hpValue = value;
         }
     }
