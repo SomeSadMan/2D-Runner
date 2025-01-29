@@ -3,5 +3,4 @@
     public void HideHeartFromBar();
     
     public void AddHeartInBar();
-    
 }

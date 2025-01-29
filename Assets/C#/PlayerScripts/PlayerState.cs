@@ -14,7 +14,7 @@ public class PlayerState : IState
         animator = _animator;
     }
     
-    private enum MovementState {PlayerRun, JumpUp, JumpDown, DoubleJump }
+    private enum MovementState {PlayerRun, JumpUp, JumpDown, DoubleJump, Death }
     public void CheckAnimationState( Player player)
     {
         MovementState state = 0;

@@ -6,15 +6,18 @@ using UnityEngine;
 
 public class CharacterHealth :IHealth
 {
-    [SerializeField] private GameObject[] hpImage;
+    
+    private GameObject[] hpImage;
+    public event Action OnDeath;
     private int hpValue = 3;
     internal readonly int takenDamage = 1;
     private int currentHeartIndex;
     private int currentHeartIndex2;
 
-    public CharacterHealth(int hpValue)
+    public CharacterHealth(int hpValue, GameObject[] _hpImage )
     {
         _hpValue = hpValue;
+        hpImage = _hpImage;
     }
 
     public int _hpValue
@@ -24,7 +27,7 @@ public class CharacterHealth :IHealth
         {
             if (value <= 0)
             {
-                
+                OnDeath?.Invoke();
             }
             
             hpValue = value;
@@ -53,4 +56,6 @@ public class CharacterHealth :IHealth
         }
 
     }
+
+    
 }
