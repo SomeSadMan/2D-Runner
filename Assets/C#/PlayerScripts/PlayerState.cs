@@ -6,6 +6,7 @@ public class PlayerState : IState
 {
     private Rigidbody2D rigidbody2D;
     private Animator animator;
+    private Player player;
 
     public PlayerState(Rigidbody2D _rigidbody2D, Animator _animator)
     {
@@ -27,14 +28,14 @@ public class PlayerState : IState
             state = MovementState.JumpDown;
         }
 
-        // if (!IsGrounded() && canDoubleJump == false && rigidbody2D.velocity.y > .1f)
-        // {
-        //     state = MovementState.DoubleJump;
-        // }
-        // else if (!IsGrounded() && canDoubleJump == false && rigidbody2D.velocity.y < -.1f)
-        // {
-        //     state = MovementState.JumpDown;
-        // }
+        if (!player.IsGrounded() && player.CanDoubleJump == false && rigidbody2D.velocity.y > .1f)
+        {
+            state = MovementState.DoubleJump;
+        }
+        else if (!player.IsGrounded() && player.CanDoubleJump == false && rigidbody2D.velocity.y < -.1f)
+        {
+            state = MovementState.JumpDown;
+        }
         
         animator.SetInteger("state",(int)state);
     }

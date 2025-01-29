@@ -7,7 +7,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private IMovement _imovement;
-    private IState state;
+    private IState _state;
 
     public Rigidbody2D Rb { get; private set; }
     public Animator Anim { get; private set; }
@@ -15,19 +15,26 @@ public class Player : MonoBehaviour
     [SerializeField] private float jumpVelocity;
     [SerializeField] private float fallVelocity;
     [SerializeField] private LayerMask jumpableGround;
-
+    public float JumpVelocity => jumpVelocity;
+    public float FallVelocity => fallVelocity;
+    
+    
     private bool jump;
     private bool doubleJump;
     private bool down;
     public bool CanDoubleJump { get; private set; }
+
+    public void Construct(IMovement movement, IState state)
+    {
+        _imovement = movement;
+        _state = state;
+    }
 
     private void Awake()
     {
         Rb = GetComponent<Rigidbody2D>();
         Anim = GetComponent<Animator>();
         coll = GetComponent<BoxCollider2D>();
-        _imovement = new PlayerMovement(Rb, jumpVelocity, fallVelocity);
-        state = new PlayerState(Rb,Anim);
     }
 
     private void FixedUpdate()
@@ -38,7 +45,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         PlayerInputsObserver();
-        state.CheckAnimationState(this);
+        _state.CheckAnimationState(this);
         
     }
 
