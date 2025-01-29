@@ -5,31 +5,26 @@ using UnityEngine;
 public class PlayerMovement : IMovement
 {
     private Rigidbody2D rigidbody2D;
-    private float jumpVelocity;
-    private float fallSpeed;
+    
 
     
 
-    public PlayerMovement(Rigidbody2D _rigidbody2D , float _jumpVelocity, float _fallSpeed)
+    public PlayerMovement(Rigidbody2D _rigidbody2D)
     {
         rigidbody2D = _rigidbody2D;
-        jumpVelocity = _jumpVelocity;
-        fallSpeed = _fallSpeed;
-
-
     }
     
-    public void Jump()
+    public void Jump(float velocity)
     { 
-        rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpVelocity);
+        rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, velocity);
     }
 
-    public void DoubleJump()
+    public void DoubleJump(float velocity)
     { 
-        rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpVelocity);
+        rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, velocity);
     }
-    public void Down()
+    public void Down(float velocity)
     { 
-        rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x , -fallSpeed);
+        rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x , -velocity);
     }
 }

@@ -14,23 +14,22 @@ public class CharacterHealth :IHealth
     private int currentHeartIndex;
     private int currentHeartIndex2;
 
-    public CharacterHealth(int hpValue, GameObject[] _hpImage )
+    public CharacterHealth(int hp, GameObject[] _hpImage )
     {
-        _hpValue = hpValue;
+        HpValue = hp;
         hpImage = _hpImage;
     }
 
-    public int _hpValue
+    public int HpValue
     {
         get => hpValue;
         set
         {
-            if (value <= 0)
+            hpValue = Mathf.Max(0, value);
+            if (hpValue<= 0 )
             {
                 OnDeath?.Invoke();
             }
-            
-            hpValue = value;
         }
     }
 
@@ -42,6 +41,12 @@ public class CharacterHealth :IHealth
             currentHeartIndex = i + 1;
             break;
         }
+    }
+
+    public void TakeDamage(int value)
+    {
+        HpValue -= value;
+        Debug.Log($"хп стало меньше, ваше ХП {HpValue}");
     }
 
     public void AddHeartInBar()

@@ -6,8 +6,22 @@ public class DeathService : IDeath
 {
     
 
-    public void Death( )
+
+    public DeathService(ICharacter _player , IHealth health)
     {
-        //player.Rb.bodyType = RigidbodyType2D.Static;
+        if (health != null)
+        {
+            health.OnDeath += () => Death(_player);
+        }
     }
+    
+
+    public void Death(ICharacter player)
+    {
+        player.Rb.bodyType = RigidbodyType2D.Static;
+        Debug.Log("Character is dead! Physical body is now static.");
+        
+    }
+
+    
 }

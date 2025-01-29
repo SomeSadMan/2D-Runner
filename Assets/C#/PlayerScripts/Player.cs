@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, ICharacter
 {
     private IMovement _imovement;
     private IState _state;
     private IHealth _health;
+    
 
     public Rigidbody2D Rb { get; private set; }
     public Animator Anim { get; private set; }
@@ -73,21 +74,21 @@ public class Player : MonoBehaviour
     {
         if (jump)
         {
-            _imovement.Jump();
+            _imovement.Jump(jumpVelocity);
             jump = false;
             CanDoubleJump = true;
         }
         
         if (doubleJump)
         {
-            _imovement.DoubleJump();
+            _imovement.DoubleJump(jumpVelocity);
             doubleJump = false;
             CanDoubleJump = false;
         }
         
         if (down)
         {
-            _imovement.Down();
+            _imovement.Down(fallVelocity);
             down = false;
         }
     }
@@ -101,10 +102,10 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            //characterHealth.HpValue -= characterHealth.takenDamage;
+            _health.TakeDamage(1);// заглушка , в будущем можно сменить на интерфейс Damagable, который будет наносить урон 
             _health.HideHeartFromBar();
             //TODO:сделать анимацию получения урона (мигание спрайта или визуальный эффект) 
-            //Debug.Log($"hp deducted, your current hp is {characterHealth.HpValue}");
+            //Debug.Log($"hp deducted, your current hp is {hp.HpValue}");
             // pool.ReturnObstacle(collision.gameObject);
             
             
