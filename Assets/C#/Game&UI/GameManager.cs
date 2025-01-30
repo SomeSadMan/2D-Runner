@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class GameManager
 {
     private IHealth _health;
@@ -8,4 +10,6 @@ public class GameManager
         _health = health;
         _death = new DeathService(player ,_health);
     }
+    
+   
 }

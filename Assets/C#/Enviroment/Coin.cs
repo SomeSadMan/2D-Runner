@@ -1,9 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
+
 
 public class Coin : MonoBehaviour
 {
@@ -27,7 +23,7 @@ public class Coin : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D coll)
     {
-        if (coll.CompareTag("PlayerOld"))
+        if (coll.CompareTag("Player"))
         {
            // gameManager = FindObjectOfType<GameManager>();
             //gameManager.Coins += coinValue;

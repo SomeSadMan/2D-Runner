@@ -6,7 +6,7 @@ public class PlayerState : IState
 {
     private Rigidbody2D rigidbody2D;
     private Animator animator;
-    private Player player;
+    
 
     public PlayerState(Rigidbody2D _rigidbody2D, Animator _animator)
     {
@@ -15,7 +15,7 @@ public class PlayerState : IState
     }
     
     private enum MovementState {PlayerRun, JumpUp, JumpDown, DoubleJump, Death }
-    public void CheckAnimationState( Player player)
+    public void CheckAnimationState( Player player, IHealth health)
     {
         MovementState state = 0;
         
@@ -35,6 +35,11 @@ public class PlayerState : IState
         else if (!player.IsGrounded() && player.CanDoubleJump == false && rigidbody2D.velocity.y < -.1f)
         {
             state = MovementState.JumpDown;
+        }
+
+        if (health.IsPlayerAlive == false )
+        {
+            state = MovementState.Death;
         }
         
         animator.SetInteger("state",(int)state);

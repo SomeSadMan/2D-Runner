@@ -13,6 +13,7 @@ public class CharacterHealth :IHealth
     internal readonly int takenDamage = 1;
     private int currentHeartIndex;
     private int currentHeartIndex2;
+    public bool IsPlayerAlive { get; set; } = true;
 
     public CharacterHealth(int hp, GameObject[] _hpImage )
     {
@@ -29,9 +30,13 @@ public class CharacterHealth :IHealth
             if (hpValue<= 0 )
             {
                 OnDeath?.Invoke();
+                IsPlayerAlive = false;
+
             }
         }
     }
+
+   
 
     public void HideHeartFromBar()
     {

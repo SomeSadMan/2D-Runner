@@ -10,12 +10,13 @@ public class ObstaclesPool : MonoBehaviour
     private List<GameObject> obstaclePool = new List<GameObject>();
     private int randomObstacle;
     private int randomIndex;
+    [SerializeField] private Player player;
 
     private void Start()
     {
+        player.OnReturnInPool += ReturnObstacle;
         for (int i = 0; i < poolSize; i++)
         {
-            
             GameObject obstacle = Instantiate(prefabs[i % prefabs.Length], transform);
             obstacle.SetActive(false);
             obstaclePool.Add(obstacle);
@@ -50,7 +51,7 @@ public class ObstaclesPool : MonoBehaviour
         return newObstacle;
     }
 
-    public void ReturnObstacle(GameObject obstacle)
+    public void ReturnObstacle( GameObject obstacle)
     {
         obstacle.SetActive(false);
     }

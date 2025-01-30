@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class DeathService : IDeath
 {
-    
-
-
     public DeathService(ICharacter _player , IHealth health)
     {
         if (health != null)
@@ -15,7 +12,6 @@ public class DeathService : IDeath
         }
     }
     
-
     public void Death(ICharacter player)
     {
         player.Rb.bodyType = RigidbodyType2D.Static;

@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour, ICharacter
@@ -9,11 +6,12 @@ public class Player : MonoBehaviour, ICharacter
     private IMovement _imovement;
     private IState _state;
     private IHealth _health;
-    
+    private BoxCollider2D coll;
 
     public Rigidbody2D Rb { get; private set; }
     public Animator Anim { get; private set; }
-    private BoxCollider2D coll;
+    public event Action<GameObject> OnReturnInPool;
+    
     [SerializeField] private float jumpVelocity;
     [SerializeField] private float fallVelocity;
     [SerializeField] private LayerMask jumpableGround;
@@ -48,7 +46,7 @@ public class Player : MonoBehaviour, ICharacter
     private void Update()
     {
         PlayerInputsObserver();
-        _state.CheckAnimationState(this);
+        _state.CheckAnimationState(this, _health);
         
     }
 
@@ -106,7 +104,8 @@ public class Player : MonoBehaviour, ICharacter
             _health.HideHeartFromBar();
             //TODO:сделать анимацию получения урона (мигание спрайта или визуальный эффект) 
             //Debug.Log($"hp deducted, your current hp is {hp.HpValue}");
-            // pool.ReturnObstacle(collision.gameObject);
+            //pool.ReturnObstacle(collision.gameObject);
+            OnReturnInPool?.Invoke(collision.gameObject);
             
             
         }
