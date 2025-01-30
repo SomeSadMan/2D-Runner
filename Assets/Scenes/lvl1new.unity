@@ -406,7 +406,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &314971211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,12 +452,12 @@ GameObject:
   - component: {fileID: 331534620}
   - component: {fileID: 331534619}
   m_Layer: 0
-  m_Name: CoinPool
+  m_Name: ' CoinPool'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &331534619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -870,6 +870,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 747396947}
   m_CullTransparentMesh: 1
+--- !u!1 &749383082
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 749383083}
+  m_Layer: 0
+  m_Name: ===========================================================================================
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &749383083
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 749383082}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.03, y: -2.79, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &768311310
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2371,6 +2402,7 @@ MonoBehaviour:
   - {fileID: 631655591594235407, guid: 4529aa1d794a0cc4eaeac8e79805240c, type: 3}
   - {fileID: 2586612514384344360, guid: c879a0bf67800ec4380da2902ba4c695, type: 3}
   - {fileID: 3065323688078430192, guid: 1bce29da17c121d48a2bbb87c07143e3, type: 3}
+  player: {fileID: 2018839183}
 --- !u!4 &2079591374
 Transform:
   m_ObjectHideFlags: 0
@@ -2493,6 +2525,7 @@ SceneRoots:
   - {fileID: 1903385604}
   - {fileID: 1624622408}
   - {fileID: 267277625}
+  - {fileID: 749383083}
   - {fileID: 331534620}
   - {fileID: 2079591374}
   - {fileID: 1658359993}

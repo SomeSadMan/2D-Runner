@@ -5,11 +5,13 @@ public class GameManager
     private IHealth _health;
     private IDeath _death;
 
-    public GameManager(IHealth health,  ICharacter player )
+    public GameManager(IHealth health,  ICharacter player, IDeath death )
     {
         _health = health;
-        _death = new DeathService(player ,_health);
+        _death = death;
     }
+    
+    
     
    
 }

@@ -4,12 +4,20 @@ using UnityEngine;
 
 public class DeathService : IDeath
 {
-    public DeathService(ICharacter _player , IHealth health)
+    private ICharacter player;
+    private IHealth health;
+    
+    public DeathService(ICharacter player , IHealth health)
     {
-        if (health != null)
-        {
-            health.OnDeath += () => Death(_player);
-        }
+        Debug.Log("DeathService создан!");
+        this.player = player;
+        this.health = health;
+    }
+
+    public void AddEvent()
+    { 
+        Debug.Log("DeathService: AddEvent() вызван");
+        health.OnDeath += () => Death(player);
     }
     
     public void Death(ICharacter player)
