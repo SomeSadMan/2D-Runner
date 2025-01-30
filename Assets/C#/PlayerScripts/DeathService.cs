@@ -9,7 +9,6 @@ public class DeathService : IDeath
     
     public DeathService(ICharacter player , IHealth health)
     {
-        Debug.Log("DeathService создан!");
         this.player = player;
         this.health = health;
     }
@@ -23,8 +22,6 @@ public class DeathService : IDeath
     public void Death(ICharacter player)
     {
         player.Rb.bodyType = RigidbodyType2D.Static;
-        Debug.Log("Character is dead! Physical body is now static.");
-        
     }
 
     

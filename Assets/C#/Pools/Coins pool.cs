@@ -45,7 +45,6 @@ public class Coinspool : MonoBehaviour
         if (coinScr != null)
         {
             coinScr.CoinsPool = this;
-            Debug.Log("Ссылка на Coinspool установлена для монетки.");
         }
         
         return coin;

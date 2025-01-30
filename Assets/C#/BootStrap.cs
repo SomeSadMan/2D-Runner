@@ -11,6 +11,7 @@ public class BootStrap : MonoBehaviour
     private IHealth health;
     private ICharacter character;
     private IDeath death;
+    private PlayerState playerState;
     [SerializeField] private Player player;
     [SerializeField] private GameObject[] hpImage;
     void Start()
@@ -32,19 +33,14 @@ public class BootStrap : MonoBehaviour
 
     private void InjectGameManagerDependencies()
     {
-        gameManager = new GameManager(health, character , death);
+        gameManager = new GameManager(health, character , death ,state);
+        gameManager.GlobalStuff();
         
     }
     private void InjectDeathServiceDependencies()
     {
-        
-        Debug.Log("InjectDsDependencies вызван!");
-        Debug.Log("character: " + (character == null ? "NULL" : "OK"));
-        Debug.Log("health: " + (health == null ? "NULL" : "OK"));
         death = new DeathService(character, health);
         death.AddEvent();
-        
-
     }
     
 }

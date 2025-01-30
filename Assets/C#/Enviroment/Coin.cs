@@ -28,7 +28,7 @@ public class Coin : MonoBehaviour
            // gameManager = FindObjectOfType<GameManager>();
             //gameManager.Coins += coinValue;
             //Destroy(gameObject);
-            Debug.Log("Монетка собрана, возвращаем в пул.");
+            
             CoinsPool.ReturnCoin(gameObject);
         }
     }
