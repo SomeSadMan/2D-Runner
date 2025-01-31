@@ -1647,6 +1647,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathScreen: {fileID: 34342850}
+  hint: {fileID: 1167544505}
   platforms:
   - {fileID: 1607705575}
   - {fileID: 1018082694}

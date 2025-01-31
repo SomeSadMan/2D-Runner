@@ -7,7 +7,9 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject deathScreen;
+    [SerializeField] private GameObject hint;
     [SerializeField] private PlatformController[] platforms;
+    
     [SerializeField] private Text currentScore;
     [SerializeField] private Text record;
     [SerializeField] private Text finalScore;
@@ -18,8 +20,9 @@ public class GameManager : MonoBehaviour
     private ICharacter _player;
 
     public event Action<int> OnCoinCollected;
-    
-    public int СoinsScore { get; private set; }
+    public event Action OnHintDissapear;
+
+    private int СoinsScore { get; set; }
     private float distance;
     private float highRecord;
     private float checkPoint;
@@ -42,9 +45,11 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        GlobalStuff();
+        ActivateDeathState();
         ChangeSpeedLevel();
         DistanceUpdate();
+        HintDisappearing();
+
     }
 
     private void DistanceUpdate()
@@ -68,7 +73,7 @@ public class GameManager : MonoBehaviour
     }
     
 
-    public void GlobalStuff()
+    private void ActivateDeathState()
     {
         if (state.GetCurrentState() == PlayerState.MovementState.Death)
         {
@@ -114,6 +119,14 @@ public class GameManager : MonoBehaviour
     public void PlayAgain()
     {
         SceneManager.LoadScene(1);
+    }
+
+    private void HintDisappearing()
+    {
+        if (distance > 100)
+        {
+            if (OnHintDissapear != null) OnHintDissapear.Invoke();
+        }
     }
     
    
