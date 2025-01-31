@@ -17,9 +17,7 @@ public class BootStrap : MonoBehaviour
     {
         health = new CharacterHealth(3, hpImage );
         InjectPlayerDependencies(player); 
-        
-        gameManager.GameManagerConstruct(health, character);
-
+        gameManager.GameManagerConstruct(health, character, state);
     }
 
     private void InjectPlayerDependencies(Player _player)

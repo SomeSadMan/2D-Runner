@@ -3,14 +3,11 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    //private GameManager gameManager;
     private readonly int coinValue = 1;
     private Rigidbody2D _rigidbody2D;
+    private GameManager gameManager;
     public Coinspool CoinsPool { get; set; }
-
-
-
-
+    
     private void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
@@ -25,12 +22,15 @@ public class Coin : MonoBehaviour
     {
         if (coll.CompareTag("Player"))
         {
-           // gameManager = FindObjectOfType<GameManager>();
-            //gameManager.Coins += coinValue;
-            //Destroy(gameObject);
-            
-            CoinsPool.ReturnCoin(gameObject);
+           AddCoinValue();
+           CoinsPool.ReturnCoin(gameObject);
         }
+    }
+
+    public void AddCoinValue()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+        gameManager.СoinsScore += coinValue;
     }
 
     
