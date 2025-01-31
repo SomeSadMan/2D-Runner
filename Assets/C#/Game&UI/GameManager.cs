@@ -17,8 +17,9 @@ public class GameManager : MonoBehaviour
     private IHealth _health;
     private ICharacter _player;
 
+    public event Action<int> OnCoinCollected;
     
-    public int СoinsScore { get; set; }
+    public int СoinsScore { get; private set; }
     private float distance;
     private float highRecord;
     private float checkPoint;
@@ -34,7 +35,9 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1;
+        СoinsScore = PlayerPrefs.GetInt("CoinValue", 0);
         coinText.text = $" {СoinsScore} ";
+        OnCoinCollected += UpdateCoinText;
     }
 
     private void Update()
@@ -98,6 +101,14 @@ public class GameManager : MonoBehaviour
                 print("Maximum speed reached!");
             }
         }
+    }
+
+    public void UpdateCoinText( int amount)
+    {
+        СoinsScore += amount;
+        coinText.text = $" {СoinsScore} ";
+        PlayerPrefs.SetInt("CoinValue", СoinsScore);
+        PlayerPrefs.Save();
     }
     
     public void PlayAgain()

@@ -30,7 +30,7 @@ public class Coin : MonoBehaviour
     public void AddCoinValue()
     {
         gameManager = FindObjectOfType<GameManager>();
-        gameManager.СoinsScore += coinValue;
+        gameManager.UpdateCoinText(coinValue);
     }
 
     
