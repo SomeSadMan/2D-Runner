@@ -1,9 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 
-public class BootStrap : MonoBehaviour
+public class PlaySceneBootStrap : MonoBehaviour
 {
     [SerializeField] private GameManager gameManager;
     [SerializeField] private Player player;
@@ -13,6 +14,7 @@ public class BootStrap : MonoBehaviour
     private IState state;
     private IHealth health;
     private ICharacter character;
+
     void Start()
     {
         health = new CharacterHealth(3, hpImage );
