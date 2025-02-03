@@ -9,7 +9,8 @@ public class PlaySceneBootStrap : MonoBehaviour
     [SerializeField] private GameManager gameManager;
     [SerializeField] private Player player;
     [SerializeField] private GameObject[] hpImage;
-    
+
+    private int  selectedSkin;
     private IMovement movement;
     private IState state;
     private IHealth health;
@@ -17,9 +18,11 @@ public class PlaySceneBootStrap : MonoBehaviour
 
     void Start()
     {
+        
         health = new CharacterHealth(3, hpImage );
         InjectPlayerDependencies(player); 
         gameManager.GameManagerConstruct(health, character, state);
+        gameManager.LoadBGSkin();
     }
 
     private void InjectPlayerDependencies(Player _player)

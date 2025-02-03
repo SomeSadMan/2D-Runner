@@ -1,4 +1,5 @@
 using System;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
@@ -8,13 +9,18 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject deathScreen;
     [SerializeField] private GameObject hint;
+    [SerializeField] private GameObject[] bgSkins;
+    [SerializeField] private GameObject backGtound;
+    [SerializeField] private GameObject oldBG;
     [SerializeField] private PlatformController[] platforms;
+    
     
     [SerializeField] private Text currentScore;
     [SerializeField] private Text record;
     [SerializeField] private Text finalScore;
     [SerializeField] private Text coinText;
 
+    private int selectedskin;
     private IState state;
     private IHealth _health;
     private ICharacter _player;
@@ -50,6 +56,18 @@ public class GameManager : MonoBehaviour
         DistanceUpdate();
         HintDisappearing();
 
+    }
+
+    public void LoadBGSkin()
+    {
+        selectedskin = PlayerPrefs.GetInt("selectedBG", -1);
+        GameObject pref = bgSkins[selectedskin];
+        GameObject clone = Instantiate(pref, backGtound.transform.position, Quaternion.identity);
+        clone.transform.SetParent(backGtound.transform);
+        clone.transform.rotation = Quaternion.Euler(90 , 180 , 0);
+        oldBG.SetActive(false);
+        clone.SetActive(true);
+        
     }
 
     private void DistanceUpdate()
