@@ -447,7 +447,7 @@ MonoBehaviour:
   coinPosition:
   - {fileID: 637910873}
   - {fileID: 1218040228}
-  delay: 5
+  delay: 20
 --- !u!4 &314971212
 Transform:
   m_ObjectHideFlags: 0
@@ -2069,7 +2069,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1658359992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2084,7 +2084,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pool: {fileID: 2079591373}
   spawnPoint: {fileID: 625373942}
-  spawnInterval: 1
+  spawnInterval: 5
 --- !u!4 &1658359993
 Transform:
   m_ObjectHideFlags: 0
@@ -2715,7 +2715,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2079591373
 MonoBehaviour:
   m_ObjectHideFlags: 0
