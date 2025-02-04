@@ -130,7 +130,7 @@ public class GameManager : MonoBehaviour
     {
         СoinsScore += amount;
         coinText.text = $" {СoinsScore} ";
-        PlayerPrefs.SetInt("CoinValue", 0);
+        PlayerPrefs.SetInt("CoinValue", СoinsScore);
         PlayerPrefs.Save();
     }
     
