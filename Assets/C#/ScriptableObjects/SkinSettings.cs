@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "new skin", menuName = "SO/BackGrounds")]
