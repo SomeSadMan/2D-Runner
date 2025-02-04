@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: skin 3
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: 2099178873355bf45813b9f409ebc8a6, type: 2}
-  price: 70
+  price: 3
   skinName: DarkForest

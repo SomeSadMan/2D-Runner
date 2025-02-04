@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -7,10 +8,13 @@ public class BGSelection : MonoBehaviour
 {
     [SerializeField] private SkinStorage skinStorage;
     [SerializeField] private GameObject currentSelectedBg;
+    [SerializeField] private GameObject priceTextContainer;
     [SerializeField] private Text priceText;
     [SerializeField] private MainMenuBootStrap strap;
+
     
 
+    private List<SkinSettings> existingSkins = new List<SkinSettings>();
     private Renderer renderer;
     internal int index;
 
@@ -18,16 +22,31 @@ public class BGSelection : MonoBehaviour
 
     private void Start()
     {
+        LoadExistingSkins();
         UpdateUiPriceText();
         renderer = currentSelectedBg.GetComponent<Renderer>();
         renderer.material = skinStorage.skinSettingsArray[index].material;
     }
 
+    private void Update()
+    {
+        
+    }
+
     public void NextChoise()
     {
         index = (index + 1) % skinStorage.skinSettingsArray.Length;
-        UpdateUiPriceText();
         renderer.material = skinStorage.skinSettingsArray[index].material;
+        
+        if (existingSkins.Contains(skinStorage.skinSettingsArray[index]))
+        {
+            priceTextContainer.SetActive(false);
+        }
+        else
+        {
+            priceTextContainer.SetActive(true);
+        }
+        UpdateUiPriceText();
         Debug.Log($" вы перешли к   {index}");
         SaveSkin();
     }
@@ -37,11 +56,22 @@ public class BGSelection : MonoBehaviour
         index--;
         if (index < 0)
         {
-            index += skinStorage.skinSettingsArray.Length;
-            renderer.material = skinStorage.skinSettingsArray[index].material;
-            UpdateUiPriceText();
+            index += skinStorage.skinSettingsArray.Length; 
         }
+        if (existingSkins.Contains(skinStorage.skinSettingsArray[index]))
+        {
+            priceTextContainer.SetActive(false);
+        }
+        else
+        {
+            priceTextContainer.SetActive(true);
+        }
+        
+        UpdateUiPriceText();
+        renderer.material = skinStorage.skinSettingsArray[index].material;
+        
         Debug.Log($" вы вернулись к  {skinStorage.skinSettingsArray.Length}");
+        
         SaveSkin();
     }
 
@@ -55,11 +85,21 @@ public class BGSelection : MonoBehaviour
 
     public void StartWithNewSkin()
     {
-        if (CanAfford())
+        if (existingSkins.Contains(skinStorage.skinSettingsArray[index]))
         {
-            strap.CoinsTotalAmount -= skinStorage.skinSettingsArray[index].price;
             PlayerPrefs.SetInt("CoinValue", strap.CoinsTotalAmount);
             PlayerPrefs.SetInt("selectedBG", index);
+            PlayerPrefs.Save();
+            SceneManager.LoadScene(1, LoadSceneMode.Single);
+        }
+        else if (CanAfford())
+        {
+            strap.CoinsTotalAmount -= skinStorage.skinSettingsArray[index].price;
+            existingSkins.Add(skinStorage.skinSettingsArray[index]);
+            priceTextContainer.SetActive(false);
+            PlayerPrefs.SetInt("CoinValue", strap.CoinsTotalAmount);
+            PlayerPrefs.SetInt("selectedBG", index);
+            SaveExistingSkins();
             strap.UpdateCOinsUI();
             UpdateUiPriceText();
             PlayerPrefs.Save();
@@ -87,4 +127,49 @@ public class BGSelection : MonoBehaviour
         }
 
     }
+    
+    public void SaveExistingSkins() //метод сгенерирован нейронкой , разобрать его и понять как он работает 
+    {
+        List<int> boughtSkinIndices = new List<int>();
+
+        foreach (var skin in existingSkins)
+        {
+            for (int i = 0; i < skinStorage.skinSettingsArray.Length; i++)
+            {
+                if (skinStorage.skinSettingsArray[i] == skin) // Сравниваем по ссылке
+                {
+                    boughtSkinIndices.Add(i);
+                    break; // Нашли индекс — выходим из цикла
+                }
+            }
+        }
+
+        string serializedData = string.Join(",", boughtSkinIndices);
+        PlayerPrefs.SetString("BoughtSkins", serializedData);
+        PlayerPrefs.Save();
+
+        Debug.Log($"Сохранены купленные скины: {serializedData}");
+    }
+
+    
+    private void LoadExistingSkins()  //метод сгенерирован нейронкой , разобрать его и понять как он работает 
+    {
+        if (!PlayerPrefs.HasKey("BoughtSkins")) return;
+
+        string serializedData = PlayerPrefs.GetString("BoughtSkins");
+        string[] splitData = serializedData.Split(',');
+
+        existingSkins.Clear();
+        foreach (string indexStr in splitData)
+        {
+            if (int.TryParse(indexStr, out int index) && index >= 0 && index < skinStorage.skinSettingsArray.Length)
+            {
+                existingSkins.Add(skinStorage.skinSettingsArray[index]);
+            }
+        }
+
+        Debug.Log($"Загружены купленные скины: {serializedData}");
+    }
+
+
 }

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: skin 1
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: 088ff9018a3f21147b15177081ee7648, type: 2}
-  price: 150
+  price: 1
   skinName: DeepNight

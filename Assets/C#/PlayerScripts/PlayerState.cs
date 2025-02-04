@@ -24,23 +24,19 @@ public class PlayerState : IState
         if (rigidbody2D.velocity.y > .1f)
         {
             state = MovementState.JumpUp;
-            Debug.Log("прыг");
         }
         else if (rigidbody2D.velocity.y < -.1f)
         {
             state = MovementState.JumpDown;
-            Debug.Log("вниз");
         }
 
         if (!player.IsGrounded() && player.CanDoubleJump == false && rigidbody2D.velocity.y > .1f)
         {
             state = MovementState.DoubleJump;
-            Debug.Log("прыг2");
         }
         else if (!player.IsGrounded() && player.CanDoubleJump == false && rigidbody2D.velocity.y < -.1f)
         {
             state = MovementState.JumpDown;
-            Debug.Log("вниз2");
         }
 
         if (health.IsPlayerAlive == false )

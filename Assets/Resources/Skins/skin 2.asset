@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: skin 2
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: e4c3dcacb6521df4d87d50ddb3264de3, type: 2}
-  price: 40
+  price: 2
   skinName: PinkClouds

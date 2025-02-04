@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class MainMenuBootStrap : MonoBehaviour
 {
     [SerializeField] private Text coinAmountText;
+    
 
     public int CoinsTotalAmount { get;  set; }
     

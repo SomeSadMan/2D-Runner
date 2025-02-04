@@ -140,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &137921860
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1123,6 +1123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skinStorage: {fileID: 11400000, guid: 1562d24731d0c4240b8c6238735cc21c, type: 2}
   currentSelectedBg: {fileID: 932006307}
+  priceTextContainer: {fileID: 1043085653}
   priceText: {fileID: 889671063}
   strap: {fileID: 778191532}
 --- !u!1 &932006307
