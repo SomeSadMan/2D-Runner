@@ -6,49 +6,50 @@ using UnityEngine.UI;
 
 public class BGSelection : MonoBehaviour
 {
-    [SerializeField] private GameObject[] backGrounds;
-    [SerializeField] private Image shopImage;
-    public int selectedBackGrounds = 0;
+    [SerializeField] private SkinStorage skinStorage;
+    [SerializeField] private GameObject currentSelectedBg;
 
+    private Renderer renderer;
+    private int index;
 
     private void Start()
     {
-        
+        renderer = currentSelectedBg.GetComponent<Renderer>();
+        renderer.material = skinStorage.skinSettingsArray[index].material;
     }
 
     public void NextChoise()
     {
-        backGrounds[selectedBackGrounds].SetActive(false);
-        selectedBackGrounds = (selectedBackGrounds + 1) % backGrounds.Length;
-        backGrounds[selectedBackGrounds].SetActive(true);
-        Debug.Log($" вы перешли к   {selectedBackGrounds}");
+        index = (index + 1) % skinStorage.skinSettingsArray.Length;
+        renderer.material = skinStorage.skinSettingsArray[index].material;
+        Debug.Log($" вы перешли к   {index}");
         SaveSkin();
     }
 
     public void PreviousChoise()
     {
-        backGrounds[selectedBackGrounds].SetActive(false);
-        selectedBackGrounds--;
-        if (selectedBackGrounds < 0)
+        index--;
+        if (index < 0)
         {
-            selectedBackGrounds += backGrounds.Length;
+            index += skinStorage.skinSettingsArray.Length;
+            renderer.material = skinStorage.skinSettingsArray[index].material;
         }
-        backGrounds[selectedBackGrounds].SetActive(true);
-        Debug.Log($" вы вернулись к  {selectedBackGrounds}");
+        
+        Debug.Log($" вы вернулись к  {skinStorage.skinSettingsArray.Length}");
         SaveSkin();
     }
 
     public void SaveSkin()
     {
-        Debug.Log($"Попытка сохранить индекс: {selectedBackGrounds}");
-        PlayerPrefs.SetInt("selectedBG", selectedBackGrounds);
+        Debug.Log($"Попытка сохранить индекс: {index}");
+        PlayerPrefs.SetInt("selectedBG", index);
         PlayerPrefs.Save();
         Debug.Log($"Фон сохранён: {PlayerPrefs.GetInt("selectedBG")}");
     }
 
     public void StartWithNewSkin()
     {
-        PlayerPrefs.SetInt("selectedBG", selectedBackGrounds);
+        PlayerPrefs.SetInt("selectedBG", index);
         PlayerPrefs.Save();
         SceneManager.LoadScene(1, LoadSceneMode.Single);
     }
