@@ -8,12 +8,14 @@ public class BGSelection : MonoBehaviour
 {
     [SerializeField] private SkinStorage skinStorage;
     [SerializeField] private GameObject currentSelectedBg;
+    [SerializeField] private Text priceText;
 
     private Renderer renderer;
     private int index;
 
     private void Start()
     {
+        UpdateUiPriceText();
         renderer = currentSelectedBg.GetComponent<Renderer>();
         renderer.material = skinStorage.skinSettingsArray[index].material;
     }
@@ -21,6 +23,7 @@ public class BGSelection : MonoBehaviour
     public void NextChoise()
     {
         index = (index + 1) % skinStorage.skinSettingsArray.Length;
+        UpdateUiPriceText();
         renderer.material = skinStorage.skinSettingsArray[index].material;
         Debug.Log($" вы перешли к   {index}");
         SaveSkin();
@@ -33,8 +36,8 @@ public class BGSelection : MonoBehaviour
         {
             index += skinStorage.skinSettingsArray.Length;
             renderer.material = skinStorage.skinSettingsArray[index].material;
+            UpdateUiPriceText();
         }
-        
         Debug.Log($" вы вернулись к  {skinStorage.skinSettingsArray.Length}");
         SaveSkin();
     }
@@ -52,5 +55,10 @@ public class BGSelection : MonoBehaviour
         PlayerPrefs.SetInt("selectedBG", index);
         PlayerPrefs.Save();
         SceneManager.LoadScene(1, LoadSceneMode.Single);
+    }
+
+    private void UpdateUiPriceText()
+    {
+        priceText.text = skinStorage.skinSettingsArray[index].price.ToString();
     }
 }

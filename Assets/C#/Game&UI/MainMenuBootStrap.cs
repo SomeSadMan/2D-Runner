@@ -11,19 +11,7 @@ public class MainMenuBootStrap : MonoBehaviour
     [SerializeField] private Text coinAmountText;
 
     private int CoinsTotalAmount { get;  set; }
-
-    private void Awake()
-    {
-        if (_isInitialized)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        _isInitialized = true;
-        DontDestroyOnLoad(gameObject);
-    }
-
+    
     private void Start()
     {
         CoinsTotalAmount = PlayerPrefs.GetInt("CoinValue", 0);
