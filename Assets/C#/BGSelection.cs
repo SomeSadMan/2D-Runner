@@ -6,17 +6,17 @@ using UnityEngine.UI;
 
 public class BGSelection : MonoBehaviour
 {
-    [SerializeField] private SkinStorage skinStorage;
-    [SerializeField] private GameObject currentSelectedBg;
-    [SerializeField] private GameObject priceTextContainer;
-    [SerializeField] private Text priceText;
-    [SerializeField] private MainMenuBootStrap strap;
+    [SerializeField] private SkinStorage skinStorage;   //остается в скроллере
+    [SerializeField] private GameObject currentSelectedBg;  //остается в скроллере
+    [SerializeField] private GameObject priceTextContainer;     //уходит в UIManager
+    [SerializeField] private Text priceText;                    //уходит в UIManager
+    [SerializeField] private MainMenuBootStrap strap;           //уходит в UIManager (если это вообще нужно) 
 
     
 
-    private List<SkinSettings> existingSkins = new List<SkinSettings>();
-    private Renderer renderer;
-    internal int index;
+    private List<SkinSettings> existingSkins = new List<SkinSettings>(); //остается в скроллере
+    private Renderer renderer;  //остается в скроллере
+    internal int index; //остается в скроллере
 
     
 
@@ -34,7 +34,7 @@ public class BGSelection : MonoBehaviour
         
     }
 
-    public void NextChoise()
+    public void NextChoise()    //остается в скроллере
     {
         index = (index + 1) % skinStorage.skinSettingsArray.Length;
         renderer.material = skinStorage.skinSettingsArray[index].material;
@@ -52,7 +52,7 @@ public class BGSelection : MonoBehaviour
         SaveSkin();
     }
 
-    public void PreviousChoise()
+    public void PreviousChoise()    //остается в скроллере
     {
         index--;
         if (index < 0)
@@ -76,7 +76,7 @@ public class BGSelection : MonoBehaviour
         SaveSkin();
     }
 
-    public void SaveSkin()
+    public void SaveSkin() //уходит в UIManager
     {
         Debug.Log($"Попытка сохранить индекс: {index}");
         PlayerPrefs.SetInt("selectedBG", index);
@@ -84,7 +84,7 @@ public class BGSelection : MonoBehaviour
         Debug.Log($"Фон сохранён: {PlayerPrefs.GetInt("selectedBG")}");
     }
 
-    public void StartWithNewSkin()
+    public void StartWithNewSkin() //уходит в UIManager
     {
         if (existingSkins.Contains(skinStorage.skinSettingsArray[index]))
         {
@@ -110,12 +110,12 @@ public class BGSelection : MonoBehaviour
         }
     }
 
-    private void UpdateUiPriceText()
+    private void UpdateUiPriceText() //уходит в UIManager
     {
         priceText.text = skinStorage.skinSettingsArray[index].price.ToString();
     }
     
-    public bool CanAfford()
+    public bool CanAfford() //уходит в UIManager
     {
         if (strap.CoinsTotalAmount >= skinStorage.skinSettingsArray[index].price)
         {
@@ -130,7 +130,7 @@ public class BGSelection : MonoBehaviour
 
     }
     
-    public void SaveExistingSkins() //метод сгенерирован нейронкой , разобрать его и понять как он работает 
+    public void SaveExistingSkins() //метод сгенерирован нейронкой , разобрать его и понять как он работает //уходит в UIManager
     {
         List<int> boughtSkinIndices = new List<int>();
 
@@ -154,7 +154,7 @@ public class BGSelection : MonoBehaviour
     }
 
     
-    private void LoadExistingSkins()  //метод сгенерирован нейронкой , разобрать его и понять как он работает 
+    private void LoadExistingSkins()  //метод сгенерирован нейронкой , разобрать его и понять как он работает  //уходит в UIManager
     {
         if (!PlayerPrefs.HasKey("BoughtSkins")) return;
 
