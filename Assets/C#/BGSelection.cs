@@ -26,6 +26,7 @@ public class BGSelection : MonoBehaviour
         UpdateUiPriceText();
         renderer = currentSelectedBg.GetComponent<Renderer>();
         renderer.material = skinStorage.skinSettingsArray[index].material;
+        priceTextContainer.SetActive(!existingSkins.Contains(skinStorage.skinSettingsArray[index]));
     }
 
     private void Update()
@@ -87,6 +88,7 @@ public class BGSelection : MonoBehaviour
     {
         if (existingSkins.Contains(skinStorage.skinSettingsArray[index]))
         {
+            
             PlayerPrefs.SetInt("CoinValue", strap.CoinsTotalAmount);
             PlayerPrefs.SetInt("selectedBG", index);
             PlayerPrefs.Save();
