@@ -84,7 +84,7 @@ public class UIManager : MonoBehaviour
         {
             for (int i = 0; i < selector.skinStorage.skinSettingsArray.Length; i++)
             {
-                if (selector.skinStorage.skinSettingsArray[i] == skin) //
+                if (selector.skinStorage.skinSettingsArray[i] == skin)
                 {
                     boughtSkinIndices.Add(i);
                     break;
