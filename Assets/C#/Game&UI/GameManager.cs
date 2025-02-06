@@ -9,9 +9,8 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject deathScreen;
     [SerializeField] private GameObject hint;
-    [SerializeField] private GameObject[] bgSkins;
-    [SerializeField] private GameObject backGtound;
-    [SerializeField] private GameObject oldBG;
+    [SerializeField] private GameObject backGround;
+    [SerializeField] private SkinStorage bgSkins;
     [SerializeField] private PlatformController[] platforms;
     
     
@@ -60,14 +59,12 @@ public class GameManager : MonoBehaviour
 
     public void LoadBGSkin()
     {
-        selectedskin = PlayerPrefs.GetInt("selectedBG", -1);
-        GameObject pref = bgSkins[selectedskin];
-        GameObject clone = Instantiate(pref, backGtound.transform.position, Quaternion.identity);
-        clone.transform.SetParent(backGtound.transform);
-        clone.transform.rotation = Quaternion.Euler(90 , 180 , 0);
-        oldBG.SetActive(false);
-        clone.SetActive(true);
+        selectedskin = PlayerPrefs.GetInt("selectedBG", 0);
+        Renderer bgRenderer = backGround.GetComponent<Renderer>();
+        bgRenderer.material = bgSkins.skinSettingsArray[selectedskin].material;
         
+        BackGroundParalax paralax = backGround.GetComponent<BackGroundParalax>();
+        paralax.UpdateMaterial(bgRenderer.material);
     }
 
     private void DistanceUpdate()

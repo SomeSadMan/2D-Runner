@@ -16,7 +16,13 @@ public class BackGroundParalax : MonoBehaviour
     
     void Update()
     {
+        Debug.Log($"Distance: {distance}, TextureOffset: {material.GetTextureOffset("_MainTex")}");
         distance += Time.deltaTime * speed;
         material.SetTextureOffset("_MainTex", Vector2.right * distance);
+    }
+
+    public void UpdateMaterial(Material newMaterial)
+    {
+        material = newMaterial;
     }
 }

@@ -1693,12 +1693,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathScreen: {fileID: 34342850}
   hint: {fileID: 1167544505}
-  bgSkins:
-  - {fileID: 7862768408858941150, guid: 362fda5beedbc67439703450e974bd5d, type: 3}
-  - {fileID: 4183248279745641793, guid: dee5262fb72b58a42aeed2fba459c4a5, type: 3}
-  - {fileID: 1062376046001132472, guid: 8fbe8d0bf2d987b43a67c97603442a82, type: 3}
-  backGtound: {fileID: 847963286}
-  oldBG: {fileID: 1800866676}
+  backGround: {fileID: 1800866676}
+  bgSkins: {fileID: 11400000, guid: 1562d24731d0c4240b8c6238735cc21c, type: 2}
   platforms:
   - {fileID: 1607705575}
   - {fileID: 1018082694}
@@ -2743,11 +2739,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7740882362953757995, guid: d0ccd4f1935c5534bb65d35ba2951bed, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.7313
       objectReference: {fileID: 0}
     - target: {fileID: 7740882362953757995, guid: d0ccd4f1935c5534bb65d35ba2951bed, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.7138
       objectReference: {fileID: 0}
     - target: {fileID: 7740882362953757995, guid: d0ccd4f1935c5534bb65d35ba2951bed, type: 3}
       propertyPath: m_LocalPosition.z

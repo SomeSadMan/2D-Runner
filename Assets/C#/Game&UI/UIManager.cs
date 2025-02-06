@@ -13,11 +13,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text priceText;
     [SerializeField] private Text coinAmountText;
     
+    public int CoinsTotalAmount { get;  set; }
+    
     internal List<SkinSettings> ExistingSkins = new List<SkinSettings>();
     internal int Index;
     
-    public int CoinsTotalAmount { get;  set; }
-
     public void Initialize(ISaveAndLoad save)
     {
         SaveManager = save;

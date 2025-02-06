@@ -1769,8 +1769,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 920815009}
-        m_TargetAssemblyTypeName: BGSelection, Assembly-CSharp
+      - m_Target: {fileID: 1909737916}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: StartWithNewSkin
         m_Mode: 1
         m_Arguments:
@@ -3061,9 +3061,9 @@ CanvasRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 778191531}
+  - {fileID: 1909737917}
   - {fileID: 675658656}
   - {fileID: 975015926}
   - {fileID: 2037257456}
   - {fileID: 137921862}
-  - {fileID: 778191531}
-  - {fileID: 1909737917}
