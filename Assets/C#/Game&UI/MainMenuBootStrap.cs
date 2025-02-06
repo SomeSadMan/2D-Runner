@@ -4,20 +4,15 @@ using UnityEngine.UI;
 
 public class MainMenuBootStrap : MonoBehaviour
 {
-    [SerializeField] private Text coinAmountText;
+    private ISaveAndLoad saveManager;
+    [SerializeField] private UIManager uiManager;
+    
+    private void Awake()
+    {
+        saveManager = new SaveService();
+        uiManager.Initialize(saveManager);
+    }
     
 
-    public int CoinsTotalAmount { get;  set; }
     
-    private void Start()
-    {
-        CoinsTotalAmount = PlayerPrefs.GetInt("CoinValue", 0);
-        UpdateCOinsUI();
-    }
-
-    public void UpdateCOinsUI()
-    {
-        coinAmountText.text = CoinsTotalAmount.ToString();
-        PlayerPrefs.Save();
-    }
 }

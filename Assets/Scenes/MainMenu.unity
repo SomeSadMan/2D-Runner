@@ -914,7 +914,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75cb6665b4a6dd54db306ce57f1b6561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinAmountText: {fileID: 993620316}
+  uiManager: {fileID: 1909737916}
 --- !u!1 &857340014
 GameObject:
   m_ObjectHideFlags: 0
@@ -1123,9 +1123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skinStorage: {fileID: 11400000, guid: 1562d24731d0c4240b8c6238735cc21c, type: 2}
   currentSelectedBg: {fileID: 932006307}
-  priceTextContainer: {fileID: 1043085653}
-  priceText: {fileID: 889671063}
-  strap: {fileID: 778191532}
+  uiManager: {fileID: 1909737916}
 --- !u!1 &932006307
 GameObject:
   m_ObjectHideFlags: 0
@@ -2611,6 +2609,54 @@ RectTransform:
   m_AnchoredPosition: {x: 700, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1909737915
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1909737917}
+  - component: {fileID: 1909737916}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1909737916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909737915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 088f47312ad6b9f43918cb8d4381eabf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  priceTextContainer: {fileID: 1043085653}
+  selector: {fileID: 920815009}
+  priceText: {fileID: 889671063}
+  coinAmountText: {fileID: 993620316}
+--- !u!4 &1909737917
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909737915}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.133956, y: -5.9067287, z: 2.4334855}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1922059095
 GameObject:
   m_ObjectHideFlags: 0
@@ -3020,3 +3066,4 @@ SceneRoots:
   - {fileID: 2037257456}
   - {fileID: 137921862}
   - {fileID: 778191531}
+  - {fileID: 1909737917}
