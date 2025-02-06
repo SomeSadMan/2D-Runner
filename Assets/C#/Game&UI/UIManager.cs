@@ -50,9 +50,9 @@ public class UIManager : MonoBehaviour
         else if (CanAfford())
         {
             CoinsTotalAmount -= selector.skinStorage.skinSettingsArray[Index].price;
+            SaveManager.Save(CoinsTotalAmount, Index);
             ExistingSkins.Add(selector.skinStorage.skinSettingsArray[Index]);
             priceTextContainer.SetActive(false);
-            SaveManager.Save(CoinsTotalAmount, Index);
             SaveExistingSkins();
             UpdateCoinsUI();
             UpdateUiPriceText();
